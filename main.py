@@ -1,7 +1,17 @@
+
 import streamlit as st 
 from gemini.Gemini import Gemini
+st.set_page_config(
+    page_title="Monogatari",
+    page_icon="🧊",
+)
 
-st.title("Monogatari: Your AI-Powered Adventure")
+
+
+from header import render_header
+render_header()
+
+
 
 # Initialize session state
 if "setup_done" not in st.session_state:
@@ -54,12 +64,16 @@ for item in st.session_state.chat:
     with st.chat_message(item['type']):
         st.write(item['message'])
 
-# ✍️ Get user input
-prompt = st.chat_input("Say something")
 
-if prompt:
-    st.session_state.chat.append({"type": "user", "message": prompt})
-    st.rerun()
+
+if len(st.session_state.chat) > 0 and st.session_state.chat[-1]["type"] == "bot":
+  
+  # ✍️ Get user input
+  prompt = st.chat_input("Say something")
+
+  if prompt:
+      st.session_state.chat.append({"type": "user", "message": prompt})
+      st.rerun()
 
 # 🤖 Generate AI response
 if len(st.session_state.chat) > 0 and st.session_state.chat[-1]["type"] == "user":
