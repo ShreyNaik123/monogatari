@@ -12,7 +12,7 @@ load_dotenv()
 
 
 class Gemini:
-  def __init__(self, model='gemini-1.5-flash', temperature=1, top_p=0.95, top_k=40,max_output_tokens=600, response_mime_type='text/plain'):
+  def __init__(self, model='gemini-2.5-flash', temperature=1, top_p=0.95, top_k=40,max_output_tokens=600, response_mime_type='text/plain'):
     
     self.api_key = os.environ.get("GEMINI_API_KEY")   
     self.model = model
